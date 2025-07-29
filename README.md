@@ -1,2 +1,52 @@
-# task-tracker-website
-A modern and responsive Task Management Web Application built with React and Material UI on the frontend, and Spring Boot, Hibernate, MySQL, and JWT-based authentication on the backend. Includes user login/register, role-based access, dynamic task tracking, priority tagging, and a clean dashboard-style UI.
+# ✅ Smart Task Tracker — Full Stack Project
+
+A full-stack, modern, and responsive Task Management Web App to efficiently track your daily goals. The frontend is built using **React + Vite + Material UI**, while the backend uses **Java Spring Boot + Hibernate + MySQL**, secured with **JWT tokens** for authentication and role-based access.
+
+## 🔐 Core Features
+
+- 🔑 User authentication (JWT-secured Login/Register)
+- 🧑‍💼 Role-based access (Admin/User)
+- 📝 Add, edit, and delete tasks
+- ⏱️ Estimated time and deadline for tasks
+- 🎯 Task status tracking (Not Started, In Progress, Completed)
+- ⚡ Priority tagging (Low, Medium, High)
+- 📊 Responsive dashboard with Material UI
+- 🌐 RESTful API with Spring Boot
+- 🗃️ MySQL as persistent storage
+- 🎯 Hibernate for JPA implementation
+
+## 💻 Tech Stack
+
+### Frontend:
+- React 18+
+- Vite
+- Material UI (MUI)
+- Axios
+- React Router DOM
+
+### Backend:
+- Java 17+
+- Spring Boot 3.5.3
+- Spring Security 6
+- Hibernate (JPA)
+- MySQL
+- JWT (Token-Based Authentication)
+
+## 🖼️ UI Screenshots
+> Add images for: Welcome Page • Login/Register • Dashboard • Task List
+
+## 🚀 Getting Started
+
+Clone the frontend and backend repositories:
+
+```bash
+# Frontend
+git clone https://github.com/As377507/task-tracker-frontend.git
+cd task-tracker-frontend
+npm install
+npm run dev
+
+# Backend
+git clone https://github.com/As377507/task-tracker-backend.git
+cd task-tracker-backend
+./mvnw spring-boot:run
