@@ -50,3 +50,7 @@ npm run dev
 git clone https://github.com/As377507/task-tracker-backend.git
 cd task-tracker-backend
 ./mvnw spring-boot:run
+
+## 📌 Note
+
+    This project is still under development. UI improvements and additional features like real-time updates, calendar view, analytics, and notifications are in progress.
