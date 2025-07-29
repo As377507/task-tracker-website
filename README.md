@@ -32,9 +32,6 @@ A full-stack, modern, and responsive Task Management Web App to efficiently trac
 - MySQL
 - JWT (Token-Based Authentication)
 
-## 🖼️ UI Screenshots
-> Add images for: Welcome Page • Login/Register • Dashboard • Task List
-
 ## 🚀 Getting Started
 
 Clone the frontend and backend repositories:
