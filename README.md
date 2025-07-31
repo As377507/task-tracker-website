@@ -7,12 +7,10 @@ A full-stack, modern, and responsive Task Management Web App to efficiently mana
 ## 🔥 Features
 
 - 🔐 JWT-based Login & Registration
-- 🎯 Role-based access: User/Admin
 - 📝 Create, edit, delete, and view tasks
 - 📌 Task metadata: priority, estimated time, due date, and status
 - 📊 Responsive dashboard UI with Material UI & Tailwind
 - 🗃️ REST APIs secured with Spring Security
-- 📅 Roadmap for calendar view, analytics, and real-time updates
 
 ---
 
