@@ -53,7 +53,7 @@ A full-stack, modern, and responsive Task Management Web App to efficiently mana
 
 ## 🚀 Getting Started
 
-## 1️⃣ Clone the Repositories
+## Clone the Repositories
 
 ```bash
 # Frontend
@@ -102,9 +102,6 @@ Smart-Task-Tracker
 
 ---
 
-
----
-
 ## 🎨 Tailwind CSS Setup (Frontend)
 
 If Tailwind CSS is not already configured, follow these steps:
@@ -131,7 +128,7 @@ jwt.secret=yourSecretKey
 ---
 
 ## 🚀 Running the App
-👉 Backend (Spring Boot)
+## 👉 Backend (Spring Boot)
 
 ```bash
 cd task-tracker-backend
@@ -139,7 +136,7 @@ cd task-tracker-backend
 
 ```bash
 
-👉 Frontend (React + Vite)
+## 👉 Frontend (React + Vite)
 
 ```bash
 
@@ -165,4 +162,3 @@ Made with ❤️ by Akash Sen
 
 This project is licensed under the MIT License.
 
----
