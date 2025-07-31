@@ -53,7 +53,7 @@ A full-stack, modern, and responsive Task Management Web App to efficiently mana
 
 ## 🚀 Getting Started
 
-### 1️⃣ Clone the Repositories
+## 1️⃣ Clone the Repositories
 
 ```bash
 # Frontend
