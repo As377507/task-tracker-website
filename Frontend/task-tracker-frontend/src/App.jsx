@@ -1,10 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { BrowserRouter as Router, Routes, Route, Navigate } from "react-router-dom";
-import LoginForm from "./components/LoginForm";
-import RegisterForm from "./components/RegisterForm";
+import LoginForm from "./pages/LoginForm";
+import RegisterForm from "./pages/RegisterForm";
 import TodoList from "./components/TodoList";
-import WelcomePage from "./components/WelcomePage";
+import WelcomePage from "./pages/WelcomePage";
 import Navbar from "./components/Navbar";
+import About from "./pages/About";
 import "./App.css";
 
 function App() {
@@ -44,14 +45,7 @@ function App() {
           />
           <Route
             path="/about"
-            element={
-              <div style={{ padding: "2rem" }}>
-                <h2>Why Task Tracker</h2>
-                <p>
-                  Our app improves productivity, tracks priorities, and ensures timely task completion through a simple and intuitive UI.
-                </p>
-              </div>
-            }
+            element={<About />} // ✅ use About component instead of inline JSX
           />
         </Routes>
       </div>

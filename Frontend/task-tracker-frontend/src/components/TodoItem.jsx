@@ -1,17 +1,12 @@
-
 import React, { useEffect, useState } from "react";
 import {
-  Box,
-  Typography,
-  IconButton,
-  Chip,
-  TextField,
-  Button,
-} from "@mui/material";
-import { Delete, Edit, PlayArrow, CheckCircle } from "@mui/icons-material";
+  FaEdit,
+  FaTrash,
+  FaPlay,
+  FaCheckCircle,
+} from "react-icons/fa"; // Font Awesome icons
 
 const getMillisecondsFromEstimatedTime = (estimatedTime) => {
-  if (!estimatedTime) return null;
   const hours = parseFloat(estimatedTime);
   if (isNaN(hours)) return null;
   return hours * 60 * 60 * 1000;
@@ -68,112 +63,89 @@ const TodoItem = ({
     return () => clearInterval(interval);
   }, [timeLeft]);
 
+  // Tailwind priority badge color
+  const priorityColor = {
+    HIGH: "bg-red-100 text-red-800",
+    MEDIUM: "bg-yellow-100 text-yellow-800",
+    LOW: "bg-green-100 text-green-800",
+  };
+
   return (
-    <Box
+    <div
       key={todo.id}
-      mb={2}
-      p={2}
-      border={1}
-      borderColor="grey.300"
-      borderRadius={2}
-      display="flex"
-      justifyContent="space-between"
-      alignItems="flex-start"
-      sx={{
-          minHeight: "140px",           // Set a base height
-          maxWidth: "100%",             // Responsive width
-          backgroundColor: "#f9f9f9",   // Optional: background color
-          boxShadow: 1,                 // Optional: soft shadow
-      }}
+      className="border border-gray-300 rounded-lg p-4 mb-4 bg-gray-50 shadow-sm flex justify-between gap-4 min-h-[140px]"
     >
-      <Box flexGrow={1}>
-        <Typography variant="subtitle2" color="text.secondary">
-          {index + 1}.
-        </Typography>
+      {/* Left: Content */}
+      <div className="flex-1">
+        <div className="text-sm text-gray-500 mb-1">#{index + 1}</div>
 
-        <Box display="flex" gap={1} alignItems="center">
-          <Chip
-            label={todo.priority}
-            color={
-              todo.priority === "High"
-                ? "error"
-                : todo.priority === "Medium"
-                ? "warning"
-                : "success"
-            }
-            size="small"
-          />
-          <Typography variant="caption">⏱ {todo.estimatedTime}</Typography>
-          <Typography variant="caption">🟢 {todo.status}</Typography>
-
-          {todo.status === "In Progress" && timeLeft !== null && timeLeft > 0 && (
-            <Typography variant="caption" color="secondary">
-              ⏳ {formatTimeLeft(timeLeft)}
-            </Typography>
+        <div className="flex flex-wrap gap-2 items-center mb-2 text-xs">
+          <span className={`px-2 py-1 rounded-full ${priorityColor[todo.priority]}`}>
+            {todo.priority}
+          </span>
+          <span>⏱ {todo.estimatedTime}h</span>
+          <span>🟢 {todo.status}</span>
+          {todo.status === "In Progress" && timeLeft > 0 && (
+            <span className="text-indigo-500">⏳ {formatTimeLeft(timeLeft)}</span>
           )}
-        </Box>
+        </div>
 
         {todo.isEditing ? (
           <>
-            <TextField
-              size="small"
-              fullWidth
-              variant="outlined"
-              margin="dense"
+            <input
+              type="text"
+              className="w-full border border-gray-300 rounded p-2 text-sm mb-2"
               value={todo.editTitle}
               onChange={(e) =>
                 handleEditChange(todo.id, "editTitle", e.target.value)
               }
             />
-            <TextField
-              size="small"
-              fullWidth
-              variant="outlined"
-              margin="dense"
+            <textarea
+              className="w-full border border-gray-300 rounded p-2 text-sm mb-2"
               value={todo.editDescription}
               onChange={(e) =>
                 handleEditChange(todo.id, "editDescription", e.target.value)
               }
             />
-            <Button
-              size="small"
-              variant="outlined"
+            <button
               onClick={() =>
                 handleSaveEdit(todo.id, todo.editTitle, todo.editDescription)
               }
+              className="px-3 py-1 bg-blue-600 text-white text-sm rounded hover:bg-blue-700"
             >
               Save
-            </Button>
+            </button>
           </>
         ) : (
           <>
-            <Typography variant="h6">{todo.title}</Typography>
-            <Typography variant="body2">{todo.description}</Typography>
+            <h3 className="text-lg font-semibold mb-1">{todo.title}</h3>
+            <p className="text-sm text-gray-700">{todo.description}</p>
           </>
         )}
-      </Box>
+      </div>
 
-      <Box>
+      {/* Right: Actions */}
+      <div className="flex flex-col gap-2 items-center justify-start mt-1">
         {!todo.isEditing && (
-          <IconButton onClick={() => handleStartEdit(todo.id)}>
-            <Edit color="primary" />
-          </IconButton>
+          <button onClick={() => handleStartEdit(todo.id)} title="Edit">
+            <FaEdit className="text-blue-600 hover:text-blue-800" />
+          </button>
         )}
-        <IconButton onClick={() => handleDeleteTodo(todo.id)}>
-          <Delete color="error" />
-        </IconButton>
+        <button onClick={() => handleDeleteTodo(todo.id)} title="Delete">
+          <FaTrash className="text-red-500 hover:text-red-700" />
+        </button>
         {todo.status === "Not Started" && (
-          <IconButton onClick={() => handleStartTask(todo.id)}>
-            <PlayArrow color="info" />
-          </IconButton>
+          <button onClick={() => handleStartTask(todo.id)} title="Start">
+            <FaPlay className="text-teal-600 hover:text-teal-800" />
+          </button>
         )}
         {todo.status === "In Progress" && (
-          <IconButton onClick={() => handleFinishTask(todo.id)}>
-            <CheckCircle color="success" />
-          </IconButton>
+          <button onClick={() => handleFinishTask(todo.id)} title="Finish">
+            <FaCheckCircle className="text-green-600 hover:text-green-800" />
+          </button>
         )}
-      </Box>
-    </Box>
+      </div>
+    </div>
   );
 };
 

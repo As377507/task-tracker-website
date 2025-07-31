@@ -2,21 +2,6 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import TodoItem from "./TodoItem";
 
-import {
-  Grid,
-  Card,
-  CardContent,
-  TextField,
-  Button,
-  Typography,
-  IconButton,
-  Box,
-  Paper,
-  MenuItem,
-  Chip,
-} from "@mui/material";
-import { Delete, Edit, PlayArrow, CheckCircle } from "@mui/icons-material";
-
 const priorities = ["LOW", "MEDIUM", "HIGH"];
 
 const TodoList = ({ token }) => {
@@ -24,7 +9,7 @@ const TodoList = ({ token }) => {
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [priority, setPriority] = useState("MEDIUM");
-  const [estimatedTime, setEstimatedTime] = useState(""); // In hours or "2h 30m"
+  const [estimatedTime, setEstimatedTime] = useState("");
 
   const fetchTodos = async () => {
     try {
@@ -39,7 +24,7 @@ const TodoList = ({ token }) => {
         editDescription: todo.description,
         startTime: todo.startTime || null,
         endTime: todo.endTime || null,
-        status: todo.status || "Not Started", // default
+        status: todo.status || "Not Started",
         priority: todo.priority || "MEDIUM",
         estimatedTime: todo.estimatedTime || "",
       }));
@@ -55,16 +40,6 @@ const TodoList = ({ token }) => {
       alert("All fields including estimated time are required");
       return;
     }
-
-    console.log({
-      title,
-      description,
-      priority,
-      estimatedTime,
-      status: "Not Started",
-    });
-
-    console.log("Priority Type:", typeof priority); // Should be string
 
     try {
       await axios.post(
@@ -126,7 +101,6 @@ const TodoList = ({ token }) => {
   };
 
   const handleStartTask = async (id) => {
-    const startTime = new Date().toISOString();
     try {
       await axios.put(
         `http://localhost:8081/api/todos/${id}/start`,
@@ -140,7 +114,6 @@ const TodoList = ({ token }) => {
   };
 
   const handleFinishTask = async (id) => {
-    const endTime = new Date().toISOString();
     try {
       await axios.put(
         `http://localhost:8081/api/todos/${id}/finish`,
@@ -158,79 +131,58 @@ const TodoList = ({ token }) => {
   }, [token]);
 
   return (
-  <Grid container spacing={4} padding={4}>
-    {/* Form Side (left) */}
-    <Grid item xs={12} md={4}>
-      <Card elevation={4}>
-        <CardContent>
-          <Typography variant="h5" gutterBottom>
-            Add New Task
-          </Typography>
+    <div className="flex flex-col md:flex-row gap-6 p-6 w-full">
+      {/* Form Section */}
+      <div className="w-full md:w-1/3 bg-white p-6 rounded-lg shadow-md">
+        <h2 className="text-xl font-bold mb-4">Add New Task</h2>
 
-          <TextField
-            label="Title"
-            variant="outlined"
-            fullWidth
-            margin="normal"
-            value={title}
-            onChange={(e) => setTitle(e.target.value)}
-          />
-          <TextField
-            label="Description"
-            variant="outlined"
-            fullWidth
-            margin="normal"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
-          />
-          <TextField
-            label="Priority"
-            select
-            fullWidth
-            margin="normal"
-            value={priority}
-            onChange={(e) => setPriority(e.target.value.toUpperCase())}
-          >
-            <MenuItem value="LOW">Low</MenuItem>
-            <MenuItem value="MEDIUM">Medium</MenuItem>
-            <MenuItem value="HIGH">High</MenuItem>
-          </TextField>
-          <TextField
-            label="Estimated Time (in hours)"
-            type="number"
-            fullWidth
-            margin="normal"
-            value={estimatedTime}
-            onChange={(e) => setEstimatedTime(e.target.value)}
-          />
+        <input
+          type="text"
+          placeholder="Title"
+          className="w-full border border-gray-300 p-2 rounded mb-3"
+          value={title}
+          onChange={(e) => setTitle(e.target.value)}
+        />
 
-          <Button
-            variant="contained"
-            color="primary"
-            fullWidth
-            onClick={handleAddTodo}
-            sx={{ mt: 2 }}
-          >
-            Add Task
-          </Button>
-        </CardContent>
-      </Card>
-    </Grid>
+        <textarea
+          placeholder="Description"
+          className="w-full border border-gray-300 p-2 rounded mb-3"
+          value={description}
+          onChange={(e) => setDescription(e.target.value)}
+        />
 
-    {/* Task List Side (right) */}
-    <Grid item xs={12} md={4}>
-      <Paper
-        elevation={3}
-        sx={{
-          maxHeight: "80vh",
-          overflowY: "auto",
-          p: 2,
-          display: "flex",
-          flexDirection: "column",
-        }}
-      >
+        <select
+          className="w-full border border-gray-300 p-2 rounded mb-3"
+          value={priority}
+          onChange={(e) => setPriority(e.target.value.toUpperCase())}
+        >
+          {priorities.map((p) => (
+            <option key={p} value={p}>
+              {p.charAt(0) + p.slice(1).toLowerCase()}
+            </option>
+          ))}
+        </select>
+
+        <input
+          type="number"
+          placeholder="Estimated Time (hrs)"
+          className="w-full border border-gray-300 p-2 rounded mb-3"
+          value={estimatedTime}
+          onChange={(e) => setEstimatedTime(e.target.value)}
+        />
+
+        <button
+          onClick={handleAddTodo}
+          className="w-full bg-blue-600 text-white py-2 px-4 rounded hover:bg-blue-700 transition"
+        >
+          Add Task
+        </button>
+      </div>
+
+      {/* Task List Section */}
+      <div className="w-full md:w-2/3 bg-white p-4 rounded-lg shadow-md max-h-[80vh] overflow-y-auto">
         {todos.length === 0 ? (
-          <Typography>No tasks available</Typography>
+          <p className="text-gray-500">No tasks available</p>
         ) : (
           todos.map((todo, index) => (
             <TodoItem
@@ -246,11 +198,9 @@ const TodoList = ({ token }) => {
             />
           ))
         )}
-      </Paper>
-    </Grid>
-  </Grid>
-);
-
+      </div>
+    </div>
+  );
 };
 
 export default TodoList;

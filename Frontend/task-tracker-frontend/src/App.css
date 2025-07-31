@@ -1,38 +1,6 @@
-.app-container {
-  font-family: Arial, sans-serif;
-}
+@import "tailwindcss";
+/* App.css or index.css */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-.navbar {
-  display: flex;
-  justify-content: space-between;
-  background-color: #3f51b5;
-  padding: 1rem 2rem;
-  color: white;
-}
-
-.nav-title {
-  font-size: 1.5rem;
-  font-weight: bold;
-  color: white;
-  text-decoration: none;
-}
-
-.nav-right {
-  display: flex;
-  gap: 1rem;
-  align-items: center;
-}
-
-.nav-link {
-  color: white;
-  text-decoration: none;
-  font-weight: 500;
-}
-
-.logout-btn {
-  background-color: transparent;
-  color: white;
-  border: none;
-  cursor: pointer;
-  font-weight: 500;
-}
