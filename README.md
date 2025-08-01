@@ -36,7 +36,6 @@ A full-stack, modern, and responsive Task Management Web App to efficiently mana
 
 ## 🖼️ UI Screenshots
 
-> 📁 Place these images in a `screenshots/` folder in your root directory.
 
 ### 🔐 Login Page
 ![Login Page](screenshots/login.png)
@@ -118,7 +117,7 @@ If Tailwind CSS is not already configured, follow these steps:
 In src/main/resources/application.properties, add the following:
 
 spring.datasource.url=jdbc:mysql://localhost:3306/task_db
-spring.datasource.username=root
+spring.datasource.username=yourusername
 spring.datasource.password=yourpassword
 spring.jpa.hibernate.ddl-auto=update
 jwt.secret=yourSecretKey
