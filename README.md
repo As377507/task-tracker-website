@@ -149,7 +149,7 @@ npm run dev
 
 Made with ❤️ by Akash Sen
 
-    🔗 LinkedIn : link
+    🔗 LinkedIn : linkedin.com/in/akash-sen-28834a30b
 
     📧 Email: asen05897@gmail.com
 
